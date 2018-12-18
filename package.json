@@ -1,0 +1,25 @@
+{
+  "name": "storefront",
+  "version": "1.0.0",
+  "description": "Amazon-like storefront using MySQL to take in orders from customers and deplete stock from the store's inventory.",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriennerice/storefront.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adriennerice/storefront/issues"
+  },
+  "homepage": "https://github.com/adriennerice/storefront#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  }
+}
