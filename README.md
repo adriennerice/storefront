@@ -3,7 +3,7 @@ Amazon-like storefront using MySQL to take in orders from customers and deplete 
 
 The products stored in the database are shown below.
 
-    ![Database and table code](/images/database.png)
+![Database and table SQL code](/images/database.png)
 
 To start the application run enter 'node bamazonManager.js' in the command line. This application contains 2 views: the Customer View and the Manager View.
 
