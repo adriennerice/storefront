@@ -7,7 +7,7 @@ require("dotenv").config();
 var connection = mysql.createConnection({
   host: "localhost",
 
-  // Your port; if not 3306
+  //Add port and user name to .env
   port: 3306,
 
   // Your username
@@ -104,7 +104,7 @@ function customerView() {
             }
         );
     } else {
-        console.log(y("*****************************************************\n"));
+        console.log(y("*****************************************************"));
         console.log("Insufficient quantity!");  
         console.log("Current Inventory: " + stockResult);
         console.log(y("*****************************************************\n"));
@@ -156,7 +156,22 @@ function viewSale(){
   connection.query("SELECT * FROM products", function(err, res) {
     if (err) throw err;
     // Log all results of the SELECT statement
-    console.log(res);
+    for (var i = 0; i < res.length; i++) {
+        console.log(
+          "Item ID: " +
+            res[i].item_id +
+            " || Product Name: " +
+            res[i].product_name +
+            " || Department: " +
+            res[i].department_name +
+            " || Price: " +
+            res[i].price +
+            " || Quantity: " +
+            res[i].stock_quantity +
+            "\n"
+        );
+      }
+    // console.log(res);
     connection.end();
   });
 };
@@ -166,7 +181,22 @@ function viewLowInventory(){
   connection.query("SELECT * FROM products WHERE stock_quantity < 5", function(err, res) {
     if (err) throw err;
     // Log all results of the SELECT statement
-    console.log(res);
+    for (var i = 0; i < res.length; i++) {
+        console.log(
+          "Item ID: " +
+            res[i].item_id +
+            " || Product Name: " +
+            res[i].product_name +
+            " || Department: " +
+            res[i].department_name +
+            " || Price: " +
+            res[i].price +
+            " || Quantity: " +
+            res[i].stock_quantity +
+            "\n"
+        );
+      }
+    //console.log(res);
     connection.end();
   });
 };
@@ -204,10 +234,10 @@ function updateInventory(){
             chosenItem = results[i];
           }
         }
-        console.log(chosenItem);
+        // console.log(chosenItem);
         // var itemName = chosenItem.product_name;
         var newInventory = parseInt(answer.updateInventory) + parseInt(chosenItem.stock_quantity);
-        console.log(newInventory);
+        // console.log(newInventory);
           
           connection.query("UPDATE products SET ? WHERE ?",
             [
@@ -220,8 +250,11 @@ function updateInventory(){
             ],
             function(error) {
               if (error) throw err;
+              console.log(y("*****************************************************"));
               console.log("Product inventory was updated successfully!");
               console.log("New inventory is " + newInventory);
+              console.log(y("*****************************************************\n"));
+
               start();
             }
           );
@@ -271,10 +304,28 @@ function addNewProduct() {
       },
       function(err) {
         if (err) throw err;
+        console.log(y("*****************************************************"));
         console.log("Your product was added to the inventory successfully!");
-       
+        console.log(y("*****************************************************\n"));
         start();
       }
     );
   });
 };
+
+
+// ***********************************************
+// To make DB output pretty can create a table
+// for (var i = 0; i < res.length; i++) {
+//     console.log(
+//       "Position: " +
+//         res[i].position +
+//         " || Song: " +
+//         res[i].song +
+//         " || Artist: " +
+//         res[i].artist +
+//         " || Year: " +
+//         res[i].year
+//     );
+//   }
+// ***********************************************
